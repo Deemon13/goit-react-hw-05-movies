@@ -1,19 +1,26 @@
-import { useTrendingMovies } from 'hooks/useTrendingMovies';
-import { Loader } from 'components/Loader/Loader';
-import { MoviesTitle } from 'components/MoviesTitle/MoviesTitle';
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import { MoviesWrapper } from './styledPages/HomePage.styled';
+import { useState } from 'react';
+
+import { useTrendingMovies } from '../hooks/useTrendingMovies';
+import { Loader } from '../components/Loader/Loader';
+import { PageTitle } from '../components/PageTitle/PageTitle';
+import { MoviesList } from '../components/MoviesList/MoviesList';
+import { MoviesWrapper, MoreMoviesBtn } from './styledPages/HomePage.styled';
 
 export function HomePage() {
-  const { movies, loading } = useTrendingMovies();
+  const [page, setPage] = useState(1);
+  const { movies, loading } = useTrendingMovies(page);
 
   return (
     <MoviesWrapper>
-      <MoviesTitle title="Trending today" />
+      <PageTitle title="Trending today" />
 
       {loading && <Loader />}
 
       <MoviesList items={movies} />
+
+      <MoreMoviesBtn type="button" onClick={() => setPage(page => page + 1)}>
+        More movies
+      </MoreMoviesBtn>
     </MoviesWrapper>
   );
 }

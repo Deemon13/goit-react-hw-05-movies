@@ -4,22 +4,38 @@ export const GlobalStyles = css`
   :root {
     position: relative;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
     font-size: 62.5%;
+    background-color: #ffffff;
+  }
+
+  html {
+    box-sizing: border-box;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
   }
 
   body {
     margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    color: #212121;
+    background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   img {
@@ -28,9 +44,11 @@ export const GlobalStyles = css`
     height: auto;
   }
 
-  ul,
-  li,
-  p,
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+
   h1,
   h2,
   h3,
@@ -39,16 +57,18 @@ export const GlobalStyles = css`
   h6 {
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: 0;
+    font-family: inherit;
+    vertical-align: baseline;
   }
 
-  ul {
-    list-style: none;
+  a {
+    text-decoration: none;
+    color: black;
   }
 
-  tr,
-  td,
-  th {
-    margin: 0;
-    padding: 0;
+  .activeLink {
+    color: red;
   }
 `;

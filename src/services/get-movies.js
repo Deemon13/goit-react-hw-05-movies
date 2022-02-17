@@ -8,8 +8,10 @@ const KEY_V3 = '9eab4199b01913b6a81b6702a89a7ff0';
 
 //trending
 //https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
-export async function getPopularMovies() {
-  const response = await axios.get(`/trending/all/day?api_key=${KEY_V3}`);
+export async function getPopularMovies(page) {
+  const response = await axios.get(
+    `/trending/all/day?page=${page}&api_key=${KEY_V3}`
+  );
   //   console.log('response:', response);
   //   console.log('response.data:', response.data);
 

@@ -1,13 +1,12 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
+import { AppBar } from '../AppBar/AppBar';
 
 export function Layout() {
   return (
     <div>
-      <nav>
-        <NavLink to="/homepage">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-        <Outlet />
-      </nav>
+      <AppBar />
+      <Outlet />
     </div>
   );
 }

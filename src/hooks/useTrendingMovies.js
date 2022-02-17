@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPopularMovies } from 'services/get-movies';
 
-export function useTrendingMovies() {
+export function useTrendingMovies(page) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -9,8 +9,9 @@ export function useTrendingMovies() {
     async function getMovies() {
       setLoading(true);
       try {
-        const movies = await getPopularMovies();
-        setMovies(movies.results);
+        const movies = await getPopularMovies(page);
+        // prevState => [...prevState, ...images]
+        setMovies(prevState => [...prevState, ...movies.results]);
       } catch (error) {
         console.error();
       } finally {
@@ -19,7 +20,7 @@ export function useTrendingMovies() {
     }
 
     getMovies();
-  }, []);
+  }, [page]);
 
   return { movies, loading };
 }

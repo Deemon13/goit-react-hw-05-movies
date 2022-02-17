@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from 'components/Layout/Layout';
-import { HomePage, MoviesPage } from 'pages';
-import { MovieDetailsPage } from 'pages/MovieDetailsPage';
+import { Layout } from './Layout/Layout';
+import { HomePage, MoviesPage, MovieDetailsPage } from '../pages';
 
 export function App() {
   return (
