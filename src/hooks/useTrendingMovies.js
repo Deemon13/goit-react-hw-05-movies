@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPopularMovies } from 'services/get-movies';
 
 export function useTrendingMovies() {
-  const [items, setItems] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export function useTrendingMovies() {
       setLoading(true);
       try {
         const movies = await getPopularMovies();
-        setItems(movies.results);
+        setMovies(movies.results);
       } catch (error) {
         console.error();
       } finally {
@@ -21,5 +21,5 @@ export function useTrendingMovies() {
     getMovies();
   }, []);
 
-  return { items, loading };
+  return { movies, loading };
 }

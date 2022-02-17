@@ -1,24 +1,19 @@
-import { Link } from 'react-router-dom';
-
 import { useTrendingMovies } from 'hooks/useTrendingMovies';
 import { Loader } from 'components/Loader/Loader';
+import { MoviesTitle } from 'components/MoviesTitle/MoviesTitle';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { MoviesWrapper } from './styledPages/HomePage.styled';
 
 export function HomePage() {
-  const { items, loading } = useTrendingMovies();
+  const { movies, loading } = useTrendingMovies();
 
   return (
-    <main>
-      <h1>Trending today</h1>
+    <MoviesWrapper>
+      <MoviesTitle title="Trending today" />
+
       {loading && <Loader />}
-      <ul>
-        {items.map(item => {
-          return (
-            <li key={item.id}>
-              <Link to={`/movies/${item.id}`}>{item.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </main>
+
+      <MoviesList items={movies} />
+    </MoviesWrapper>
   );
 }
