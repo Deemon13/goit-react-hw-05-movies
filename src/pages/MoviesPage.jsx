@@ -1,3 +1,10 @@
+import { SearchBar } from '../components/SearchBar/SearchBar';
+
 export function MoviesPage() {
-  return <main>MoviesPage</main>;
+  return (
+    <main>
+      <SearchBar />
+      MoviesPage
+    </main>
+  );
 }
