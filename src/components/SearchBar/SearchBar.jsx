@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
   SearchForm,
@@ -8,18 +8,22 @@ import {
   SearchFormButtonLabel,
 } from './SearchBar.styled';
 
-export function SearchBar() {
+export function SearchBar({ onSubmitForm }) {
   return (
-    <SearchForm>
+    <SearchForm onSubmit={onSubmitForm} autoComplete="off">
       <SearchFormButton type="submit">
         <SearchFormButtonLabel>Search</SearchFormButtonLabel>
       </SearchFormButton>
       <SearchFormInput
         type="text"
-        autoComplete="off"
+        name="search"
         autoFocus
         placeholder="Search movie"
       />
     </SearchForm>
   );
 }
+
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
