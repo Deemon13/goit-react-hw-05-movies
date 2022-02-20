@@ -21,7 +21,6 @@ export const SearchFormButton = styled.button`
   width: 48px;
   height: 48px;
   border: 0;
-  /*<a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Royyan Wijaya - Flaticon</a>*/
   background-image: url(${searchIcon});
   background-size: 40%;
   background-repeat: no-repeat;
