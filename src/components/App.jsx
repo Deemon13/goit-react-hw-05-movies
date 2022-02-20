@@ -1,15 +1,27 @@
+import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from './Layout/Layout';
-import { HomePage, MoviesPage, MovieDetailsPage } from 'pages';
-import { Cast } from 'pages/Cast';
-import { Reviews } from 'pages/Reviews';
+import { HomePage } from 'pages';
+
+const createChunk = componentName => {
+  return lazy(() =>
+    import(`../pages/${componentName}`).then(module => ({
+      default: module[componentName],
+    }))
+  );
+};
+
+const MoviesPage = createChunk('MoviesPage');
+const MovieDetailsPage = createChunk('MovieDetailsPage');
+const Cast = createChunk('Cast');
+const Reviews = createChunk('Reviews');
 
 export function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index path="homepage" element={<HomePage />} />
+        <Route index element={<HomePage />} />
         <Route path="movies" element={<MoviesPage />} />
         <Route path="movies/:movieId" element={<MovieDetailsPage />}>
           <Route path="cast" element={<Cast />}></Route>
