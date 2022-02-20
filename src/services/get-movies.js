@@ -18,10 +18,10 @@ export async function getPopularMovies(page) {
   return response.data;
 }
 
-export async function getMovieByName(movieName) {
+export async function getMovieByName(movieName, page) {
   // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
   const response = await axios.get(
-    `/search/movie?query=${movieName}$api_key=${KEY_V3}&page=1&include_adult=true`
+    `/search/movie?query=${movieName}&api_key=${KEY_V3}&page=${page}&include_adult=true`
   );
 
   //   console.log('response:', response);

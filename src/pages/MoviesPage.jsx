@@ -3,29 +3,54 @@ import { MoviesList } from 'components/MoviesList/MoviesList';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getMovieByName } from 'services/get-movies';
+import { getPopularMovies, getMovieByName } from 'services/get-movies';
+import { Title } from './styledPages/MoviesPage.styled';
 
 export function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
-  // const [page, setPage] = useState(1);
-  // const [searchDone, setsearchDone] = useState(false);
+  const [page, setPage] = useState(1);
+  const [searchDone, setsearchDone] = useState(false);
   const query = searchParams.get('query');
-  // console.log('query', query);
+
+  useEffect(() => {
+    if (query) {
+      return;
+    }
+    async function getMovies() {
+      setLoading(true);
+      try {
+        const movies = await getPopularMovies(page);
+        setMovies(prevState => [...prevState, ...movies.results]);
+      } catch (error) {
+        console.error();
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getMovies();
+  }, [page, query]);
+
+  useEffect(() => {
+    setMovies([]);
+    setPage(1);
+  }, [query]);
 
   useEffect(() => {
     if (query) {
       async function getSearchedMovie() {
         setLoading(true);
         try {
-          const movies = await getMovieByName(query);
+          const movies = await getMovieByName(query, page);
+          console.log(movies);
           if (movies.results.length === 0) {
             alert(`There is no movie with query ${query}`);
             return;
           }
-          setMovies(movies.results);
+          setMovies(prevState => [...prevState, ...movies.results]);
+          setsearchDone(true);
         } catch (error) {
           console.log(error);
         } finally {
@@ -34,24 +59,7 @@ export function MoviesPage() {
       }
       getSearchedMovie();
     }
-  }, [query]);
-
-  // useEffect(() => {
-  //   async function getMovies() {
-  //     setLoading(true);
-  //     try {
-  //       const movies = await getPopularMovies(page);
-  //       // prevState => [...prevState, ...images]
-  //       setMovies(prevState => [...prevState, ...movies.results]);
-  //     } catch (error) {
-  //       console.error();
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-
-  //   getMovies();
-  // }, [page]);
+  }, [query, page]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -60,17 +68,24 @@ export function MoviesPage() {
       alert('Empty input!');
       return;
     }
-    // console.log('queryInput', queryInput);
     setSearchParams({ query: queryInput.trim() });
-    // console.log('searchParams', searchParams);
   }
 
   return (
     <main>
       <SearchBar onSubmitForm={handleSubmit} />
-      MoviesPage
+      {!searchDone ? (
+        <Title>Trending today</Title>
+      ) : (
+        <Title>Search results</Title>
+      )}
       {loading && <Loader />}
-      {query && !loading && <MoviesList items={movies} />}
+
+      {movies.length > 0 && <MoviesList items={movies} />}
+
+      <button type="button" onClick={() => setPage(page => page + 1)}>
+        More movies
+      </button>
     </main>
   );
 }
