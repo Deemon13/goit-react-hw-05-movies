@@ -29,3 +29,13 @@ export async function getMovieByName(movieName, page) {
 
   return response.data;
 }
+
+export async function getMovieDetails(movieId) {
+  const response = await axios.get(`/movie/${movieId}?api_key=${KEY_V3}`);
+  // .then(res => res.data);
+
+  console.log('response:', response);
+  console.log('response.data:', response.data);
+
+  return response.data;
+}

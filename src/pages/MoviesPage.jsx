@@ -4,6 +4,7 @@ import { SearchBar } from 'components/SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getPopularMovies, getMovieByName } from 'services/get-movies';
+import { MoreMoviesBtn } from './styledPages/HomePage.styled';
 import { Title } from './styledPages/MoviesPage.styled';
 
 export function MoviesPage() {
@@ -44,7 +45,6 @@ export function MoviesPage() {
         setLoading(true);
         try {
           const movies = await getMovieByName(query, page);
-          console.log(movies);
           if (movies.results.length === 0) {
             alert(`There is no movie with query ${query}`);
             return;
@@ -83,9 +83,9 @@ export function MoviesPage() {
 
       {movies.length > 0 && <MoviesList items={movies} />}
 
-      <button type="button" onClick={() => setPage(page => page + 1)}>
+      <MoreMoviesBtn type="button" onClick={() => setPage(page => page + 1)}>
         More movies
-      </button>
+      </MoreMoviesBtn>
     </main>
   );
 }
