@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Global, ThemeProvider } from '@emotion/react';
 
-import { GlobalStyles } from 'components/GlobalStyle/GlobalStyle';
-import { Normalize } from 'components/GlobalStyle/Normalize';
+import { GlobalStyles, Normalize } from 'components/GlobalStyle';
 import { App } from 'components/App';
 import { theme } from 'constants/theme';
 

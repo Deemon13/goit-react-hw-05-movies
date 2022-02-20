@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import searchIcon from '../../images/search.png';
 
 export const SearchForm = styled.form`

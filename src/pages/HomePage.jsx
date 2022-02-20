@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import { useTrendingMovies } from 'hooks/useTrendingMovies';
-import { Loader } from 'components/Loader/Loader';
-import { PageTitle } from 'components/PageTitle/PageTitle';
-import { MoviesList } from 'components/MoviesList/MoviesList';
+
+import { Loader } from 'components/Loader';
+import { PageTitle } from 'components/PageTitle';
+import { MoviesList } from 'components/MoviesList';
+
 import { MoviesWrapper, MoreMoviesBtn } from './styledPages/HomePage.styled';
 
 export function HomePage() {

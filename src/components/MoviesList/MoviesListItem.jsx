@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { Item, MoviePoster } from './MoviesList.styled';
 import NoImage from '../../images/NoImageAvailable.png';
@@ -21,3 +22,9 @@ export function MoviesListItem({ id, title, poster }) {
     </Item>
   );
 }
+
+MoviesListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  poster: PropTypes.string,
+};

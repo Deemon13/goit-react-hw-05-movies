@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Item, Text, ProfileAvatar } from './CastItem.styled';
 import NoImage from '../../images/NoImageAvailable.png';
 
@@ -13,3 +15,9 @@ export function CastItem({ avatar, name, character }) {
     </Item>
   );
 }
+
+CastItem.propTypes = {
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  character: PropTypes.string,
+};

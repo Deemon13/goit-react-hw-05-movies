@@ -1,9 +1,11 @@
-import { ButtonGoBack } from 'components/ButtonGoBack/ButtonGoBack';
-import { Loader } from 'components/Loader/Loader';
-import { MovieCard } from 'components/MovieCard/MovieCard';
 import { useState, useEffect, Suspense } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+
+import { ButtonGoBack } from 'components/ButtonGoBack';
+import { Loader } from 'components/Loader';
+import { MovieCard } from 'components/MovieCard';
 import { getMovieDetails } from 'services/get-movies';
+
 import { HeaderNav, Item } from './styledPages/MovieDetailsPage.styled';
 
 export function MovieDetailsPage() {

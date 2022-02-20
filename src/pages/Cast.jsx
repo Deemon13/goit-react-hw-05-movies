@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { getMovieCast } from 'services/get-movies';
-import { CastItem } from 'components/CastItem/CastItem';
+import { CastItem } from 'components/CastItem';
+
 import { List, NotificationText } from './styledPages/Cast.styled';
 
 export function Cast() {

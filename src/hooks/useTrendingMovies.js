@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getPopularMovies } from 'services/get-movies';
 
 export function useTrendingMovies(page) {

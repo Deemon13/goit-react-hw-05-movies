@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Layout } from './Layout/Layout';
+import { Layout } from './Layout';
 import { HomePage } from 'pages';
 
 const createChunk = componentName => {

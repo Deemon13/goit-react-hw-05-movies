@@ -1,9 +1,11 @@
-import { Loader } from 'components/Loader/Loader';
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import { SearchBar } from 'components/SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import { Loader } from 'components/Loader';
+import { MoviesList } from 'components/MoviesList';
+import { SearchBar } from 'components/SearchBar';
 import { getPopularMovies, getMovieByName } from 'services/get-movies';
+
 import { MoreMoviesBtn } from './styledPages/HomePage.styled';
 import { Title } from './styledPages/MoviesPage.styled';
 

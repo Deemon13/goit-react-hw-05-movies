@@ -1,5 +1,8 @@
-import { List } from './MoviesList.styled';
+import PropTypes from 'prop-types';
+
 import { MoviesListItem } from './MoviesListItem';
+
+import { List } from './MoviesList.styled';
 
 export function MoviesList({ items }) {
   return (
@@ -12,3 +15,13 @@ export function MoviesList({ items }) {
     </List>
   );
 }
+
+MoviesList.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string,
+      poster_path: PropTypes.string,
+    })
+  ),
+};

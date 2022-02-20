@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { getMovieReviews } from 'services/get-movies';
+
 import { List, Text, Title } from './styledPages/Reviews.styled';
 
 export function Reviews() {
