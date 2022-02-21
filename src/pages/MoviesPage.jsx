@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Loader } from 'components/Loader';
 import { MoviesList } from 'components/MoviesList';
 import { SearchBar } from 'components/SearchBar';
-import { getPopularMovies, getMovieByName } from 'services/get-movies';
+import { getMovieByName } from 'services/get-movies';
 
 import { MoreMoviesBtn } from './styledPages/HomePage.styled';
 import { Title } from './styledPages/MoviesPage.styled';
@@ -16,30 +16,6 @@ export function MoviesPage() {
   const [page, setPage] = useState(1);
   const [searchDone, setsearchDone] = useState(false);
   const query = searchParams.get('query');
-
-  useEffect(() => {
-    if (query) {
-      return;
-    }
-    async function getMovies() {
-      setLoading(true);
-      try {
-        const movies = await getPopularMovies(page);
-        setMovies(prevState => [...prevState, ...movies.results]);
-      } catch (error) {
-        console.error();
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    getMovies();
-  }, [page, query]);
-
-  useEffect(() => {
-    setMovies([]);
-    setPage(1);
-  }, [query]);
 
   useEffect(() => {
     if (query) {
@@ -76,18 +52,16 @@ export function MoviesPage() {
   return (
     <main>
       <SearchBar onSubmitForm={handleSubmit} />
-      {!searchDone ? (
-        <Title>Trending today</Title>
-      ) : (
-        <Title>Search results</Title>
-      )}
+      {searchDone && <Title>Search results</Title>}
       {loading && <Loader />}
 
       {movies.length > 0 && <MoviesList items={movies} />}
 
-      <MoreMoviesBtn type="button" onClick={() => setPage(page => page + 1)}>
-        More movies
-      </MoreMoviesBtn>
+      {searchDone && (
+        <MoreMoviesBtn type="button" onClick={() => setPage(page => page + 1)}>
+          More movies
+        </MoreMoviesBtn>
+      )}
     </main>
   );
 }
